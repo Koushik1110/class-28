@@ -1,25 +1,61 @@
 "use strict";
 
-//intersection observer
+// //intersection observer
 
-const targetEl = document.querySelector(".target");
+// const targetEl = document.querySelector(".target");
 
-const options = {
-  root: null,
-  rootMargin: "0px",
-  threshold: 0.2,
+// const options = {
+//   root: null,
+//   rootMargin: "0px",
+//   threshold: 0.2,
+// };
+
+// const callback = (entries) => {
+//   const entry = entries[0];
+
+//   if (entry.isIntersecting) {
+//     console.log("Intersecting");
+//   } else {
+//     console.log("Not Intersecting");
+//   }
+// };
+
+// const observer = new IntersectionObserver(callback, options);
+
+// observer.observe(targetEl);
+
+//Carosole
+
+const slides = document.querySelector(".slides");
+const btnPrev = document.querySelector(".prev");
+const btnNext = document.querySelector(".next");
+
+let currIndex = 0;
+
+const showSlide = (index) => {
+  slides.Style.transform = `translateX(-$(index* 100)%)`;
 };
 
-const callback = (entries) => {
-  const entry = entries[0];
-
-  if (entry.isIntersecting) {
-    console.log("Intersecting");
+const nextSlide = () => {
+  if (currIndex < slides.children.length - 1) {
+    currIndex++;
+    swowSlide(currIndex);
   } else {
-    console.log("Not Intersecting");
+    currIndex = 0;
+    showSlide(currIndex);
   }
 };
 
-const observer = new IntersectionObserver(callback, options);
+const prevSlide = () => {
+  if (currIndex > 0) {
+    currIndex--;
+    swowSlide(currIndex);
+  } else {
+    currIndex = slides.children.length - 1;
+    showSlide(currIndex);
+  }
+};
 
-observer.observe(targetEl);
+const nextSlide = () => {};
+
+const prevSlide = () => {};
